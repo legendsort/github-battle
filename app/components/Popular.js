@@ -1,5 +1,30 @@
 const React = require('react')
+const PropTypes = require('prop-types')
 
+// Stateless Functional Component
+function SelectLanguage(props) {
+  const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
+  // console.log(this.props)
+  return (
+    <ul className='languages'>
+      {languages.map(function(lang) {
+        return (
+          <li
+            key={lang}
+            onClick={props.onSelect.bind(null, lang)}
+            style={lang === props.selectedLanguage ? {color: '#d0021b'} : null}>
+            {lang}
+          </li>
+        )
+      }, this)}
+    </ul>
+  )
+}
+
+SelectLanguage.PropTypes = {
+  selectedLanguage: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
+}
 
 class Popular extends React.Component {
 
@@ -23,23 +48,12 @@ class Popular extends React.Component {
 
   // stateless rendering
   render() {
-    const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
-    // console.log('Up Here!', this)
     return (
       <div>
-        <ul className='languages'>
-          {/*<p>Selected language: {this.state.selectedLanguage}</p>*/}
-          {languages.map(function(lang) {
-            // console.log('Down Here!', this)
-            return (
-              <li key={lang}
-                  onClick={this.updateLanguage.bind(null, lang)}
-                  style={lang === this.state.selectedLanguage ? {color: '#d0021b'} : null}>
-                {lang}
-              </li>
-            )
-          }, this)}
-        </ul>
+        <SelectLanguage
+          selectedLanguage={this.state.selectedLanguage}
+          onSelect={this.updateLanguage}
+        />
       </div>
     )
   }
