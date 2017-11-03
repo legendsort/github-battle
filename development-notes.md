@@ -12,8 +12,10 @@ create `.gitignore` to ignore:
 Install dependencies that runs the app:
 
 ```
-npm install --save react react-dom
+npm install --save react react-dom prop-types
 ```
+
+(Note: as of React 15.5, `React.PropTypes` has been de-coupled out to `prop-types` npm package)
 
 Install dependencies that build the app (dev dependencies):
 
@@ -37,3 +39,4 @@ Create `webpack.config.js` (which requires entry point `app/index.js`)
 Add babel presets to `package.json` (see `package-json-notes.md`).
 
 Update npm scripts.
+
