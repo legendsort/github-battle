@@ -40,3 +40,9 @@ Add babel presets to `package.json` (see `package-json-notes.md`).
 
 Update npm scripts.
 
+# Step 4
+
+```
+npm install --save axios
+```
+
