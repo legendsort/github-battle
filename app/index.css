@@ -28,6 +28,11 @@ li {
   list-style-type: none;
 }
 
+a {
+  text-decoration: none;
+  color: #d0021b;
+}
+
 .avatar {
   width: 150px;
   border-radius: 50%;
@@ -51,4 +56,17 @@ li {
 .popular-rank {
   font-size: 20px;
   margin: 10px;
+}
+
+.nav {
+  display: flex;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.nav li {
+  margin: 15px;
+  cursor: pointer;
 }
