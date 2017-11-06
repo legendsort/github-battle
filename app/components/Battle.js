@@ -129,10 +129,20 @@ class Battle extends React.Component {
   }
 
   render() {
+    // Standard React Props for a component that contains history and url info
+    const match = this.props.match
+
+    // Player info
     const playerOneName = this.state.playerOneName
     const playerTwoName = this.state.playerTwoName
     const playerOneImage = this.state.playerOneImage
     const playerTwoImage = this.state.playerTwoImage
+
+    // Battle button
+    const battleBaseURL = match.url + '/results'
+    const battleURLParms = `?playerOneName=` + playerOneName + `&playerTwoName=` + playerTwoName
+    const encodedBattleURLParms = window.encodeURI(battleURLParms)
+
     return (
       <div>
         <div className='row'>
@@ -179,7 +189,10 @@ class Battle extends React.Component {
         {!!playerOneImage && !!playerTwoImage &&
           <Link
             className='button'
-            to={''}
+            to={{
+              pathname: battleBaseURL,
+              search: encodedBattleURLParms,
+            }}
           >
             Battle
           </Link>
