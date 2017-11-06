@@ -1,5 +1,4 @@
 const React = require('react')
-const Link = require('react-router-dom').Link
 const NavLink = require('react-router-dom').NavLink
 
 function Nav () {
