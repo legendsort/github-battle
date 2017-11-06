@@ -8,6 +8,7 @@ const Nav = require('./Nav')
 const Home = require('./Home')
 const Battle = require('./Battle')
 const Popular = require('./Popular')
+const PageNotFound = require('./PageNotFound')
 
 // Define a React App component here. A component may have:
 // - state
@@ -23,7 +24,7 @@ class App extends React.Component {
             <Route exact path='/' component={Home} />
             <Route path='/battle' component={Battle} />
             <Route path='/popular' component={Popular} />
-            <Route render={function () {return (<p>Page Not Found</p>)}}/>
+            <Route component={PageNotFound} />
           </Switch>
         </div>
       </Router>
