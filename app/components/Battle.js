@@ -1,5 +1,7 @@
 const React = require('react');
 const PropTypes = require('prop-types')
+const Link = require('react-router-dom').Link
+
 
 // Private stateless functional component
 function PlayerPreview(props) {
@@ -144,13 +146,13 @@ class Battle extends React.Component {
           }
 
           {!!playerOneName && !!playerOneImage &&
-          <PlayerPreview
-            username={playerOneName}
-            avatar={playerOneImage}
-            label={'Player One'}
-            id={'playerOne'}
-            onReset={this.handleReset}
-          />
+            <PlayerPreview
+              username={playerOneName}
+              avatar={playerOneImage}
+              label={'Player One'}
+              id={'playerOne'}
+              onReset={this.handleReset}
+            />
           }
 
           {/* =======Player Two============ */}
@@ -162,16 +164,27 @@ class Battle extends React.Component {
           }
 
           {!!playerTwoName && !!playerTwoImage &&
-          <PlayerPreview
-            username={playerTwoName}
-            avatar={playerTwoImage}
-            label={'Player Two'}
-            id={'playerTwo'}
-            onReset={this.handleReset}
-          />
+            <PlayerPreview
+              username={playerTwoName}
+              avatar={playerTwoImage}
+              label={'Player Two'}
+              id={'playerTwo'}
+              onReset={this.handleReset}
+            />
           }
 
         </div>
+
+        {/* =======Battle Button============ */}
+        {!!playerOneImage && !!playerTwoImage &&
+          <Link
+            className='button'
+            to={''}
+          >
+            Battle
+          </Link>
+        }
+
       </div>
     )
   }
