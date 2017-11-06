@@ -8,6 +8,7 @@ const Nav = require('./Nav')
 const Home = require('./Home')
 const Battle = require('./Battle')
 const Popular = require('./Popular')
+const HelloWorld = require('./HelloWorld')
 const PageNotFound = require('./PageNotFound')
 
 // Define a React App component here. A component may have:
@@ -24,6 +25,7 @@ class App extends React.Component {
             <Route exact path='/' component={Home} />
             <Route path='/battle' component={Battle} />
             <Route path='/popular' component={Popular} />
+            <Route path='/helloworld' component={HelloWorld} />
             <Route component={PageNotFound} />
           </Switch>
         </div>
