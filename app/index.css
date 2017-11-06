@@ -1,5 +1,4 @@
 body {
-  /* GitHub and Medium (etc) use these nice fonts */
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
 }
 
@@ -8,16 +7,9 @@ body {
   margin: 0 auto;
 }
 
-.languages {
-  /* flexbox framework */
-  display: flex;
-  justify-content: center;
-}
-
-.languages li {
-  margin: 10px;
-  font-weight: bold;
-  cursor: pointer;
+a {
+  text-decoration: none;
+  color: #d0021b;
 }
 
 ul {
@@ -28,6 +20,29 @@ li {
   list-style-type: none;
 }
 
+.button {
+  color: #e6e6e6;
+  background: #0a0a0a;
+  border: none;
+  font-size: 16px;
+  border-radius: 3px;
+  width: 200px;
+  text-align: center;
+  display: block;
+  padding: 7px 0;
+  margin: 10px auto;
+}
+
+.button:hover:enabled {
+  background: linear-gradient(#1a1a1a,#0a0a0a);
+  color: #fff;
+  text-decoration: none;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
 .avatar {
   width: 150px;
   border-radius: 50%;
@@ -35,6 +50,17 @@ li {
 
 .space-list-items {
   margin-bottom: 7px;
+}
+
+.languages {
+  display: flex;
+  justify-content: center;
+}
+
+.languages li {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .popular-list {
@@ -51,4 +77,22 @@ li {
 .popular-rank {
   font-size: 20px;
   margin: 10px;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav li {
+  margin-right: 15px;
+}
+
+.active {
+  font-weight: bold;
 }
