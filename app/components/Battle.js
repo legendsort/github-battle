@@ -14,6 +14,11 @@ function PlayerPreview(props) {
         alt={`Avatar for ${props.username}`}
       />
       <h2 className='username'>@{props.username}</h2>
+      <button
+        className='reset'
+        onClick={props.onReset.bind(null, props.id)}>
+        Reset
+      </button>
     </div>
   )
 }
@@ -22,6 +27,7 @@ PlayerPreview.propTypes = {
   username: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  onReset: PropTypes.func.isRequired,
 }
 
 // Private Component
@@ -99,13 +105,23 @@ class Battle extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleReset = this.handleReset.bind(this)
   }
 
   handleSubmit(id, username) {
-    this.setState(function () {
+    this.setState(function() {
       const newState = {}
       newState[`${id}Name`] = username
       newState[`${id}Image`] = `https://github.com/${username}.png?size=200`
+      return newState
+    })
+  }
+
+  handleReset(id) {
+    this.setState(function() {
+      const newState = {}
+      newState[`${id}Name`] = ''
+      newState[`${id}Image`] = null
       return newState
     })
   }
@@ -118,6 +134,8 @@ class Battle extends React.Component {
     return (
       <div>
         <div className='row'>
+
+          {/* =======Player One============ */}
           {!playerOneName &&
             <PlayerInput
               id='playerOne'
@@ -130,9 +148,12 @@ class Battle extends React.Component {
             username={playerOneName}
             avatar={playerOneImage}
             label={'Player One'}
-            id={'playerOne'} />
+            id={'playerOne'}
+            onReset={this.handleReset}
+          />
           }
 
+          {/* =======Player Two============ */}
           {!playerTwoName &&
             <PlayerInput
               id='playerTwo'
@@ -145,7 +166,9 @@ class Battle extends React.Component {
             username={playerTwoName}
             avatar={playerTwoImage}
             label={'Player Two'}
-            id={'playerTwo'} />
+            id={'playerTwo'}
+            onReset={this.handleReset}
+          />
           }
 
         </div>
