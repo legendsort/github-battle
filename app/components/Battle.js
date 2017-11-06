@@ -1,6 +1,29 @@
 const React = require('react');
 const PropTypes = require('prop-types')
 
+// Private stateless functional component
+function PlayerPreview(props) {
+  return (
+    <div>
+      <h1 className='header'>
+        {props.label}
+      </h1>
+      <img
+        className='avatar'
+        src={props.avatar}
+        alt={`Avatar for ${props.username}`}
+      />
+      <h2 className='username'>@{props.username}</h2>
+    </div>
+  )
+}
+PlayerPreview.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+}
+
 // Private Component
 class PlayerInput extends React.Component {
   constructor(props) {
@@ -82,7 +105,7 @@ class Battle extends React.Component {
     this.setState(function () {
       const newState = {}
       newState[`${id}Name`] = username
-      newState[`${id}Imnage`] = `https://github.com/${username}/.png?size=200`
+      newState[`${id}Image`] = `https://github.com/${username}.png?size=200`
       return newState
     })
   }
@@ -90,15 +113,41 @@ class Battle extends React.Component {
   render() {
     const playerOneName = this.state.playerOneName
     const playerTwoName = this.state.playerTwoName
+    const playerOneImage = this.state.playerOneImage
+    const playerTwoImage = this.state.playerTwoImage
     return (
       <div>
         <div className='row'>
           {!playerOneName &&
-            <PlayerInput id='playerOne' label='Player One' onSubmit={this.handleSubmit} />
+            <PlayerInput
+              id='playerOne'
+              label='Player One'
+              onSubmit={this.handleSubmit} />
           }
+
+          {!!playerOneName && !!playerOneImage &&
+          <PlayerPreview
+            username={playerOneName}
+            avatar={playerOneImage}
+            label={'Player One'}
+            id={'playerOne'} />
+          }
+
           {!playerTwoName &&
-          <PlayerInput id='playerTwo' label='Player Two' onSubmit={this.handleSubmit} />
+            <PlayerInput
+              id='playerTwo'
+              label='Player Two'
+              onSubmit={this.handleSubmit} />
           }
+
+          {!!playerTwoName && !!playerTwoImage &&
+          <PlayerPreview
+            username={playerTwoName}
+            avatar={playerTwoImage}
+            label={'Player Two'}
+            id={'playerTwo'} />
+          }
+
         </div>
       </div>
     )
