@@ -3,7 +3,8 @@ const PropTypes = require('prop-types')
 const queryString = require('query-string')
 const Link = require('react-router-dom').Link
 const api = require('../utils/api')
-const PlayerPreview = require('./PlayerPreview');
+const PlayerPreview = require('./PlayerPreview')
+const Loading = require('./Loading')
 
 
 // Private
@@ -95,7 +96,7 @@ class Results extends React.Component {
     // loading...
     if (loading) {
       return (
-        <p>Loading</p>
+        <Loading text="hee haa" speed={50} />
       )
     }
 
