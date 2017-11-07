@@ -66,7 +66,7 @@ class Results extends React.Component {
       players.playerOneName,
       players.playerTwoName,
     ]).then(function(players) {
-      console.log(players)
+      // console.log(players)
       if (players) {
         this.setState(function () {
           return {
@@ -110,7 +110,7 @@ class Results extends React.Component {
       )
     }
 
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div>
         <div className='row'>
