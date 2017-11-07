@@ -1,6 +1,12 @@
 const React = require('react')
 const ReactRouter = require('react-router-dom')
+
+// works in dev but not in prod
 const Router = ReactRouter.BrowserRouter
+
+// https://stackoverflow.com/questions/37550560/why-is-react-webpack-production-build-showing-blank-page
+//const Router = ReactRouter.HashRouter
+
 const Route = ReactRouter.Route
 const Switch = ReactRouter.Switch
 
