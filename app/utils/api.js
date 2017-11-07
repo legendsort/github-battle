@@ -16,6 +16,7 @@ const params = "?client_id=" + id + "&client_secret=" + sec
 function getProfile(username) {
   return axios.get('https://api.github.com/users/' + username + params)
     .then(function(user) {
+      //console.log(user)
       return user.data
     })
 }
@@ -24,13 +25,15 @@ function getProfile(username) {
 function getRepos(username) {
   return axios.get('https://api.github.com/users/' + username + '/repos' + params + '&per_page=100')
     .then(function(user) {
+      // console.log(user)
       return user.data
     })
 }
 
 // Get user's total Github repos's stars
 function getStarCount(repos) {
-  return repos.data.reduce(function (count, repo) {
+  // console.log(repos)
+  return repos.reduce(function(count, repo) {
     return count + repo.stargazers_count
   }, 0)
 }
@@ -92,5 +95,6 @@ function fetchPopularRepos (language) {
 
 
 module.exports = {
+  battle: battle,
   fetchPopularRepos: fetchPopularRepos,
 }
