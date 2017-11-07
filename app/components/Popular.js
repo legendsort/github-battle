@@ -85,7 +85,17 @@ class Popular extends React.Component {
   }
 
   componentDidMount() {
+    // Use this block to make the transition "look" longer to run than it is
+    // setTimeout(function() {
+    //   console.log('sleep starts')
+    //   this.updateLanguage(this.state.selectedLanguage)
+    // }.bind(this), 1000);
+
     this.updateLanguage(this.state.selectedLanguage)
+  }
+
+  componentWillUnmount() {
+
   }
 
   // handle stuff
