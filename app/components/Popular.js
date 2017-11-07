@@ -4,6 +4,7 @@ const PropTypes = require('prop-types')
 
 // our libs
 const api = require('../utils/api')
+const Loading = require('./Loading')
 
 
 // Stateless Functional Component
@@ -120,7 +121,7 @@ class Popular extends React.Component {
         {/*{JSON.stringify(this.state.repos, null, 2)}*/}
 
         {!this.state.repos
-          ? <p>loading</p>
+          ? <Loading text={"woo saa"} speed={100} />
           : <ReposGrid repos={this.state.repos}/>}
 
 
