@@ -129,12 +129,15 @@ class Battle extends React.Component {
 
           {!!playerOneName && !!playerOneImage &&
             <PlayerPreview
-              username={playerOneName}
-              avatar={playerOneImage}
-              label={'Player One'}
-              id={'playerOne'}
-              onReset={this.handleReset}
-            />
+                username={playerOneName}
+                avatar={playerOneImage}>
+              <button
+                  className='reset'
+                  onClick={this.handleReset.bind(this, 'playerOne')}>
+                Reset
+              </button>
+            </PlayerPreview>
+
           }
 
           {/* =======Player Two============ */}
@@ -148,11 +151,13 @@ class Battle extends React.Component {
           {!!playerTwoName && !!playerTwoImage &&
             <PlayerPreview
               username={playerTwoName}
-              avatar={playerTwoImage}
-              label={'Player Two'}
-              id={'playerTwo'}
-              onReset={this.handleReset}
-            />
+              avatar={playerTwoImage}>
+              <button
+                className='reset'
+                onClick={this.handleReset.bind(this, 'playerTwo')}>
+                Reset
+              </button>
+            </PlayerPreview>
           }
 
         </div>
