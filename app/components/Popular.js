@@ -42,7 +42,7 @@ function ReposGrid (props) {
               #{index + 1}
             </div>
 
-            <ui className='space-list-items'>
+            <ul className='space-list-items'>
               <img
                 className='avatar'
                 src={repo.owner.avatar_url}
@@ -57,7 +57,7 @@ function ReposGrid (props) {
               <li>
                 {repo.stargazers_count} stars
               </li>
-            </ui>
+            </ul>
           </li>
 
         )
