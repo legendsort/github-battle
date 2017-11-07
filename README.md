@@ -93,10 +93,10 @@ should be live!
 (non-minimized development version).
 
 
-## Run the App in production mode
+## Build the App for production deployment
 
 ```
-npm run build-prod
+npm run build
 ```
 
 This will update `dist/index.html` and `dist/index_bundle.js` (minimized production version) - essentially your
@@ -104,10 +104,83 @@ core web app production files.
 
 Open the actual `dist/index.html` file (via Mac Finder) to start playing with the single page web app!
 
-Note: To build the non-minimized version bundled files, do this instead:
+Note: To build the non-minimized version bundled files, do this instead (not used often)):
 
 ```
 npm run build-dev
+```
+
+## Deploy to Firebase
+
+### One off Firebase config
+
+Create a new project on [firebase](https://firebase.google.com/) with a gmail / google account.
+
+Do the following to configure Firebase:
+
+```
+npm run firebase-init
+```
+
+Complete fields:
+
+```
+You're about to initialize a Firebase project in this directory:
+
+  /Users/johnny/repos/react-github-battle-2017
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+? Which Firebase CLI features do you want to setup for this folder? Press Space to select features, then Enter to confirm your choices. Hosting: Configure and deploy Firebase Hosting sites
+
+=== Project Setup
+
+First, let's associate this project directory with a Firebase project.
+You can create multiple project aliases by running firebase use --add, 
+but for now we'll just set up a default project.
+
+? Select a default Firebase project for this directory: react-github-battle-2017 (react-github-battle-2017)
+
+=== Hosting Setup
+
+Your public directory is the folder (relative to your project directory) that
+will contain Hosting assets to be uploaded with firebase deploy. If you
+have a build process for your assets, use your build's output directory.
+
+? What do you want to use as your public directory? dist
+? Configure as a single-page app (rewrite all urls to /index.html)? Yes
+? File dist/index.html already exists. Overwrite? No
+i  Skipping write of dist/index.html
+
+i  Writing configuration info to firebase.json...
+i  Writing project information to .firebaserc...
+
+✔  Firebase initialization complete!
+```
+
+### Continual Firebase deployment
+
+```
+npm run build && firebase deploy
+```
+
+You may see this in the console:
+
+```
+(some build messages...)
+
+=== Deploying to 'react-github-battle-2017'...
+
+i  deploying hosting
+i  hosting: preparing dist directory for upload...
+✔  hosting: 2 files uploaded successfully
+
+✔  Deploy complete!
+
+Project Console: https://console.firebase.google.com/project/react-github-battle-2017/overview
+Hosting URL: https://react-github-battle-2017.firebaseapp.com
 ```
 
 # References
