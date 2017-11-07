@@ -3,3 +3,6 @@ node_modules
 
 # webpack output bundle files
 dist
+
+# Secret info such as client ID and secret (for accessing APIs)
+secrets
