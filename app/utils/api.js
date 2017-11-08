@@ -57,7 +57,7 @@ function sortPlayers(players) {
 
 // battle!
 function battle(players) {
-  return axios.all(players.map(getUserData))
+  return Promise.all(players.map(getUserData))
     .then(sortPlayers)
     .catch(handleError)
 }
@@ -65,13 +65,11 @@ function battle(players) {
 // ========== get popular GitHub repository =====================
 function fetchPopularRepos (language) {
   const encodedURI = window.encodeURI(
-    'https://api.github.com/search/repositories?q=stars:>1+language:' +
-    language + '&sort=stars&order=desc&type=Repositories')
+    `https://api.github.com/search/repositories?q=stars:>1+language:`+
+    `${language}&sort=stars&order=desc&type=Repositories`)
 
   return axios.get(encodedURI)
-    .then(function (response) {
-      return response.data.items
-    })
+    .then((response) => (response.data.items))
 }
 
 
