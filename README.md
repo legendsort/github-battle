@@ -1,5 +1,7 @@
 A web app that does fun stuff with GitHub APIs, such as listing most popular repositories, and comparing two users, etc.
 
+Demo: [https://react-github-battle-2017.firebaseapp.com/](https://react-github-battle-2017.firebaseapp.com/)
+
 The output is based on the GitHub Battle Project originated from the new [ReactJS Fundmental course](tylermcginnis.com)
 by [@tylermcginnis](https://github.com/tylermcginnis) - I did not "invent" this web app from scratch but this
 does demonstrate the tech that I have worked with (and learnt from).
@@ -182,6 +184,8 @@ i  hosting: preparing dist directory for upload...
 Project Console: https://console.firebase.google.com/project/react-github-battle-2017/overview
 Hosting URL: https://react-github-battle-2017.firebaseapp.com
 ```
+
+Here is the demo link: [https://react-github-battle-2017.firebaseapp.com/](https://react-github-battle-2017.firebaseapp.com/)
 
 # References
 
