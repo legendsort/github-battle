@@ -41,7 +41,7 @@ function handleError(error) {
 
 // Compose mini functions into a bigger one.
 function getUserData(player) {
-  return axios.all([
+  return Promise.all([
     getProfile(player),
     getRepos(player)
   ]).then(([profile, repos]) => ({
