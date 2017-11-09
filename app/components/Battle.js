@@ -17,12 +17,8 @@ class PlayerInput extends React.Component {
   }
 
   handleChange(event) {
-    const value = event.target.value;
-    this.setState(function() {
-      return {
-        username: value
-      }
-    })
+    const { value } = event.target;
+    this.setState(() => ({username: value}))
   }
 
   // this.props.onSubmit method comes from the Battle instance
@@ -35,24 +31,26 @@ class PlayerInput extends React.Component {
   }
 
   render() {
+    const { label } = this.props
+    const { username } = this.state
     return (
       <form className='column' onSubmit={this.handleSubmit}>
         <label className='header' htmlFor='username'>
-          {this.props.label}
+          {label}
         </label>
         <input
           id='username'
           placeholder='github username'
           type='text'
           autoComplete='off'
-          value={this.state.username}
+          value={username}
           onChange={this.handleChange}
         />
 
         <button
           className='button'
           type='submit'
-          disabled={!this.state.username}>
+          disabled={!username}>
             Submit
           </button>
       </form>
@@ -83,37 +81,32 @@ class Battle extends React.Component {
   }
 
   handleSubmit(id, username) {
-    this.setState(function() {
-      const newState = {}
-      newState[`${id}Name`] = username
-      newState[`${id}Image`] = `https://github.com/${username}.png?size=200`
-      return newState
-    })
+    // return an object, with ES6 bracket notation for key name
+    this.setState(() => ({
+      [`${id}Name`]: username,
+      [`${id}Image`]:`https://github.com/${username}.png?size=200`,
+    }))
   }
 
   handleReset(id) {
-    this.setState(function() {
-      const newState = {}
-      newState[`${id}Name`] = ''
-      newState[`${id}Image`] = null
-      return newState
-    })
+    // return an object, with ES6 bracket notation for key name
+    this.setState(() => ({
+      [`${id}Name`]: '',
+      [`${id}Image`]: null,
+    }))
   }
 
   render() {
     // Standard React Props for a component that contains history and url info
-    const match = this.props.match
+    const { match } = this.props
 
     // Player info
-    const playerOneName = this.state.playerOneName
-    const playerTwoName = this.state.playerTwoName
-    const playerOneImage = this.state.playerOneImage
-    const playerTwoImage = this.state.playerTwoImage
+    const { playerOneName, playerTwoName, playerOneImage, playerTwoImage } = this.state
 
     // Battle button
-    const battleBaseURL = match.url + '/results'
-    const battleURLParms = `?playerOneName=` + playerOneName + `&playerTwoName=` + playerTwoName
-    const encodedBattleURLParms = window.encodeURI(battleURLParms)
+    const battleBaseURL = `${match.url}/results`
+    const battleURLParams = `?playerOneName=${playerOneName}&playerTwoName=${playerTwoName}`
+    const encodedBattleURLParams = window.encodeURI(battleURLParams)
 
     return (
       <div>
@@ -133,7 +126,9 @@ class Battle extends React.Component {
                 avatar={playerOneImage}>
               <button
                   className='reset'
-                  onClick={this.handleReset.bind(this, 'playerOne')}>
+                  // onClick={this.handleReset.bind(this, 'playerOne')}
+                  onClick={() => this.handleReset('playerOne')}
+              >
                 Reset
               </button>
             </PlayerPreview>
@@ -154,7 +149,9 @@ class Battle extends React.Component {
               avatar={playerTwoImage}>
               <button
                 className='reset'
-                onClick={this.handleReset.bind(this, 'playerTwo')}>
+                // onClick={this.handleReset.bind(this, 'playerTwo')}
+                onClick={() => this.handleReset('playerTwo')}
+              >
                 Reset
               </button>
             </PlayerPreview>
@@ -168,7 +165,7 @@ class Battle extends React.Component {
             className='button'
             to={{
               pathname: battleBaseURL,
-              search: encodedBattleURLParms,
+              search: encodedBattleURLParams,
             }}
           >
             Battle
