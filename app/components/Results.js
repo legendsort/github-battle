@@ -8,35 +8,36 @@ const Loading = require('./Loading')
 
 
 // Private
-function Profile (props) {
-  const info = props.info;
-
+function Profile ({info}) {
+  const {
+    login, avatar_url, name, location, company, followers,
+    following, public_repos, blog} = info
   return (
-    <PlayerPreview username={info.login} avatar={info.avatar_url}>
+    <PlayerPreview username={login} avatar={avatar_url}>
       <ul className='space-list-items'>
-        {info.name && <li>{info.name}</li>}
-        {info.location && <li>{info.location}</li>}
-        {info.company && <li>{info.company}</li>}
-        <li>Followers: {info.followers}</li>
-        <li>Following: {info.following}</li>
-        <li>Public Repos: {info.public_repos}</li>
-        {info.blog && <li><a href={info.blog}>{info.blog}</a></li>}
+        {name && <li>{name}</li>}
+        {location && <li>{location}</li>}
+        {company && <li>{company}</li>}
+        <li>Followers: {followers}</li>
+        <li>Following: {following}</li>
+        <li>Public Repos: {public_repos}</li>
+        {blog && <li><a href={blog}>{blog}</a></li>}
       </ul>
     </PlayerPreview>
   )
 }
-
 Profile.propTypes = {
   info: PropTypes.object.isRequired,
 }
 
+
 // Private
-function Player (props) {
+function Player ({ label, score, profile}) {
   return (
     <div>
-      <h1 className='header'>{props.label}</h1>
-      <h3 style={{textAlign: 'center'}}>Score: {props.score}</h3>
-      <Profile info={props.profile} />
+      <h1 className='header'>{label}</h1>
+      <h3 style={{textAlign: 'center'}}>Score: {score}</h3>
+      <Profile info={profile} />
     </div>
   )
 }
@@ -60,33 +61,26 @@ class Results extends React.Component {
   }
 
   componentDidMount() {
-    // console.log(this.props)
     const players = queryString.parse(this.props.location.search)
-    // console.log(players)
+    const {playerOneName, playerTwoName} = players
     api.battle([
-      players.playerOneName,
-      players.playerTwoName,
-    ]).then(function(players) {
-      // console.log(players)
-      if (players) {
-        this.setState(function () {
-          return {
+      playerOneName,
+      playerTwoName,
+    ]).then((players) => {
+      players
+        ? this.setState(() => ({
             winner: players[0],
             loser: players[1],
             error: null,
             loading: false,
-          }
-        })
-      } else {
-        this.setState(function () {
-          return {
+          }))
+        : this.setState(() => ({
             error: 'Looks like there was an error. Check that both users exist on Github',
             loading: false,
-          }
-        })
-      }
-    }.bind(this))
+          }))
+    })
   }
+
   render() {
     const error = this.state.error
     const winner = this.state.winner
