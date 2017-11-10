@@ -1,12 +1,12 @@
-const axios = require('axios')
+import axios from 'axios'
 
 // See README for Github oAuth API Client access instruction
-const githubAPIConfig = require('../../secrets/githubAPIConfig')
-const id = githubAPIConfig.id
-const sec = githubAPIConfig.secret
+import { getGitHubSecrets } from '../../secrets/githubAPIConfig'
+const {id, sec} = getGitHubSecrets()
 
 // See React Fundamentals course video on Axios, Promises, and the Github API.
 const params = `?client_id=${id}&client_secret=${sec}`
+
 
 // axios returns promises
 
@@ -56,24 +56,18 @@ function sortPlayers(players) {
 }
 
 // battle!
-function battle(players) {
+export function battle(players) {
   return Promise.all(players.map(getUserData))
     .then(sortPlayers)
     .catch(handleError)
 }
 
 // ========== get popular GitHub repository =====================
-function fetchPopularRepos (language) {
+export function fetchPopularRepos (language) {
   const encodedURI = window.encodeURI(
     `https://api.github.com/search/repositories?q=stars:>1+language:`+
     `${language}&sort=stars&order=desc&type=Repositories`)
 
   return axios.get(encodedURI)
     .then((response) => (response.data.items))
-}
-
-
-module.exports = {
-  battle: battle,
-  fetchPopularRepos: fetchPopularRepos,
 }

@@ -1,10 +1,10 @@
 // npm libs
-const React = require('react')
-const PropTypes = require('prop-types')
+import React from 'react'
+import PropTypes from 'prop-types'
 
 // our libs
-const api = require('../utils/api')
-const Loading = require('./Loading')
+import { fetchPopularRepos } from '../utils/api'
+import Loading from './Loading'
 
 
 // Stateless Functional Component
@@ -89,7 +89,7 @@ class Popular extends React.Component {
     }))
 
     // AJAX
-    api.fetchPopularRepos(lang)
+    fetchPopularRepos(lang)
       .then((repos) => {
         this.setState(() => ({repos: repos,}))
       })
@@ -114,4 +114,4 @@ class Popular extends React.Component {
 
 }
 
-module.exports = Popular
+export default Popular
