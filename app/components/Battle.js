@@ -11,6 +11,9 @@ class PlayerInput extends React.Component {
     label: PropTypes.string.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }
+  static defaultProps = {
+    label: 'Username',
+  }
   state = {
     username: '',
   }
@@ -42,7 +45,6 @@ class PlayerInput extends React.Component {
           value={username}
           onChange={this.handleChange}
         />
-
         <button
           className='button'
           type='submit'
@@ -57,31 +59,27 @@ class PlayerInput extends React.Component {
 
 // Main Component
 class Battle extends React.Component {
-
   state = {
     playerOneName: '',
     playerTwoName: '',
     playerOneImage: null,
     playerTwoImage: null,
   }
-
-  handleSubmit(id, username) {
+  handleSubmit = (id, username) => {
     // return an object, with ES6 bracket notation for key name
     this.setState(() => ({
       [`${id}Name`]: username,
       [`${id}Image`]:`https://github.com/${username}.png?size=200`,
     }))
   }
-
-  handleReset(id) {
+  handleReset = (id) => {
     // return an object, with ES6 bracket notation for key name
     this.setState(() => ({
       [`${id}Name`]: '',
       [`${id}Image`]: null,
     }))
   }
-
-  render() {
+  render = () => {
     // Standard React Props for a component that contains history and url info
     const { match } = this.props
 
