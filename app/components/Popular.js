@@ -66,37 +66,24 @@ ReposGrid.PropTypes = {
 
 
 class Popular extends React.Component {
-
-  // Set default state here
-  constructor(props) {
-    super(props)
-    this.state = {
-      selectedLanguage: 'All',
-      repos: null,
-    }
-    this.updateLanguage = this.updateLanguage.bind(this)
+  state = {
+    selectedLanguage: 'All',
+    repos: null,
   }
-
-  componentDidMount() {
+  componentDidMount = () => {
     this.updateLanguage(this.state.selectedLanguage)
   }
-
-  // handle stuff
-  updateLanguage(lang) {
+  updateLanguage = (lang) => {
     this.setState(() =>({
       selectedLanguage: lang,
       repos: null,
     }))
-
-    // AJAX
     fetchPopularRepos(lang)
       .then((repos) => {
         this.setState(() => ({repos: repos,}))
       })
   }
-
-  // stateless rendering
-  render() {
+  render = () => {
     return (
       <div>
         <SelectLanguage
@@ -104,14 +91,12 @@ class Popular extends React.Component {
           selectedLanguage={this.state.selectedLanguage}
         />
         {/*{JSON.stringify(this.state.repos, null, 2)}*/}
-
         {this.state.repos
           ? <ReposGrid repos={this.state.repos}/>
           : <Loading text={"woo saa"} speed={100} />}
       </div>
     )
   }
-
 }
 
 export default Popular

@@ -1,7 +1,7 @@
 const React = require('react');
 
 class HelloWorld extends React.Component {
-  render() {
+  render = () => {
     return (
       <div>
         Hello World!
