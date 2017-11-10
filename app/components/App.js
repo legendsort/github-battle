@@ -13,7 +13,7 @@ import PageNotFound from './PageNotFound'
 // - lifecycle event (e.g. appear / disappear from screen)
 // - UI
 class App extends React.Component {
-  render() {
+  render = () => {
     return (
       <Router>
         <div className='container'>
@@ -32,4 +32,4 @@ class App extends React.Component {
   }
 }
 
-module.exports = App
+export default App

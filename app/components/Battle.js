@@ -6,31 +6,27 @@ import PlayerPreview from './PlayerPreview'
 
 // Private Component
 class PlayerInput extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      username: '',
-    }
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired,
   }
-
-  handleChange(event) {
-    const { value } = event.target;
+  state = {
+    username: '',
+  }
+  handleChange = (event) => {
+    const { value } = event.target
     this.setState(() => ({username: value}))
   }
-
   // this.props.onSubmit method comes from the Battle instance
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault()
     this.props.onSubmit(
       this.props.id,
       this.state.username
     )
   }
-
-  render() {
+  render = () => {
     const { label } = this.props
     const { username } = this.state
     return (
@@ -57,27 +53,16 @@ class PlayerInput extends React.Component {
     )
   }
 }
-PlayerInput.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-}
 
 
 // Main Component
 class Battle extends React.Component {
-  constructor(props) {
-    super(props)
 
-    this.state = {
-      playerOneName: '',
-      playerTwoName: '',
-      playerOneImage: null,
-      playerTwoImage: null,
-    }
-
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleReset = this.handleReset.bind(this)
+  state = {
+    playerOneName: '',
+    playerTwoName: '',
+    playerOneImage: null,
+    playerTwoImage: null,
   }
 
   handleSubmit(id, username) {

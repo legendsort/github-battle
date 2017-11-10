@@ -1,7 +1,7 @@
-const React = require('react');
+import React from 'react'
 
 class PageNotFound extends React.Component {
-  render() {
+  render = () => {
     return (
       <div>
         Page Not Found
