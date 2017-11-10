@@ -57,9 +57,11 @@ touch secrets/githubAPIConfig.js
 Populate the content of this `githubAPIConfig.js` like this:
 
 ```js
-module.exports = {
-  id: "YOUR-GITHUB-API-ID",
-  secret: "YOUT-GITHUB-API-SECRET"
+export function getGitHubSecrets () {
+  return {
+    id: "CLIENT-ID",
+    secret: "CLIENT-SECRET"
+  }
 }
 ```
 

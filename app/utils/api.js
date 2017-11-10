@@ -1,13 +1,12 @@
 import axios from 'axios'
 
 // See README for Github oAuth API Client access instruction
-import githubAPIConfig from '../../secrets/githubAPIConfig'
-
-const id = githubAPIConfig.id
-const sec = githubAPIConfig.secret
+import { getGitHubSecrets } from '../../secrets/githubAPIConfig'
+const {id, sec} = getGitHubSecrets()
 
 // See React Fundamentals course video on Axios, Promises, and the Github API.
 const params = `?client_id=${id}&client_secret=${sec}`
+
 
 // axios returns promises
 
